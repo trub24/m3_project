@@ -2,9 +2,8 @@ from objectpack.actions import ObjectPack
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
-from django import forms
 from objectpack.ui import ModelEditWindow
-from .ui import UserAddWindow, UserEditWindow, GroupAddWindow, PermissionAddWindow, PermissionEditWindow
+from .ui import UserAddWindow, UserEditWindow, PermissionAddWindow
 
 
 class ContentTypePack(ObjectPack):
@@ -41,12 +40,4 @@ class PermissionPack(ObjectPack):
     add_to_menu = True
     add_to_desktop = True
 
-    add_window = PermissionAddWindow
-    edit_window = PermissionEditWindow
-
-    def save_row(self, obj, create_new, request, context):
-        s = obj
-        content_type = ContentType.objects.get(id=int(request.POST['content_type']))
-        obj.content_type  = content_type
-
-        super(PermissionPack, self).save_row(obj, create_new, request, context)
+    add_window = edit_window = PermissionAddWindow

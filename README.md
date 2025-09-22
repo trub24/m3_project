@@ -8,4 +8,9 @@ docker build -t m3_project .
 ```
 docker run --name m3_project --rm -p 8000:8000 m3_project
 ```
+В одельном терминали запускием команду:
+```
+docker exec m3_project python manage.py migrate
+```
+
 Получении доступа к приложению, запущенному в контейнере, с помощью веб-браузера по ссылке: http://localhost:8000
